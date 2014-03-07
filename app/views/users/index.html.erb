@@ -1,0 +1,48 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Desc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <%# @users.find_each(start: 6, batch_size: 3) do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.desc %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td>
+         Total No of Users: <%= User.count %>
+       </td>
+     </tr>
+     <tr>
+       <td>
+        Total No of Users with image: <%= User.count(:image) %>
+      </td>
+     </tr>
+     
+  </tbody>
+</table>
+<p>
+  No of users with name Ashish:
+  <%= User.where(name: 'Ashish').count %><br>
+  <%#= User.where(:conditions => name: like 'A%') %>
+  <%#= User.where(:conditions => "name like '#{params[:name 'h']}%'") %>
+</p>
+<br>
+
+<%= link_to 'New User', new_user_path %>
